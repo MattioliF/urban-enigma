@@ -1,0 +1,32 @@
+worldMap = [0, 0, 1, 0, 1]
+beliefMap = [0.2, 0.2, 0.2, 0.2, 0.2]
+PZT1 =0.9
+PZT2 =1-PZT1
+PZT3=0.8
+PZT4=1-PZT3
+Z = 1;
+newBelief=[]
+
+def normalize (L) :
+    return [ i/sum(L) for i in L ]
+
+def findTree (i,Z):
+    if worldMap [i]==0:
+        if Z==0:
+            return PZT4
+        else:
+            return PZT3
+    else:
+        if Z==0:
+           return PZT2
+        else:
+           return PZT1 
+           
+for i in range (len (worldMap)):
+    newBelief.append(findTree (i,1)* beliefMap [i])       
+
+print(newBelief)
+newBelief = normalize (newBelief)
+
+print(newBelief)
+  
